@@ -1,4 +1,7 @@
 FROM prompto/platform:0.0.221
+USER root
+ADD ./mongodb-org-4.4.repo /etc/yum.repos.d/mongodb-org-4.4.repo
+RUN yum install -y mongodb-org-tools
 USER prompto
 WORKDIR /home/prompto
 ADD ./get-factory-version.py get-factory-version.py
@@ -10,3 +13,12 @@ USER prompto
 RUN echo /home/prompto/.m2/repository/org/prompto/CodeFactory/$(cat factory-version.txt)/CodeFactory-$(cat factory-version.txt) >> prefix.txt
 RUN mvn dependency:copy-dependencies -f $(cat prefix.txt).pom -DoutputDirectory=/v$(cat factory-version.txt)
 RUN cp $(cat prefix.txt).jar /v$(cat factory-version.txt)/
+ADD ./factory-config.yml factory-config.yml
+ADD ./factory.sh factory.sh
+USER root
+RUN chmod 777 factory.sh
+USER prompto
+EXPOSE 80
+EXPOSE 8000
+ENTRYPOINT /home/prompto/factory.sh
+CMD ["*"]

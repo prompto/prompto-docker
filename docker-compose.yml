@@ -1,0 +1,17 @@
+version: "3.9"
+services:
+  store:
+    image: prompto/mongo:4.4
+    ports:
+      - 27017:27017
+    volumes:
+      - /Users/ericvergnaud/Development/prompto/prompto-docker/data:/mnt/prompto
+  factory:
+    image: prompto/factory:0.0.250
+    ports:
+      - 80:80
+      - 8000:8000
+    volumes:
+      - /Users/ericvergnaud/Development/prompto/prompto-docker/data:/mnt/prompto
+    depends_on:
+      - store
