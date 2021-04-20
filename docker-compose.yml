@@ -7,7 +7,7 @@ services:
     volumes:
       - /Users/ericvergnaud/Development/prompto/prompto-docker/data:/mnt/prompto
   factory:
-    image: prompto/factory:0.0.250
+    image: prompto/factory:0.0.252
     ports:
       - 80:80
       - 8000:8000
