@@ -64,6 +64,8 @@ then
     echo FACTORY_IMAGE=prompto/factory:${FACTORY_VERSION} >> .env
     rm -f start-prompto.sh
     echo docker-compose up --detach >> start-prompto.sh
+    echo sleeping 10s while prompto is starting
+    echo sleep 10 >> start-prompto.sh
     echo open http://localhost:${FACTORY_PORT} >> start-prompto.sh
     chmod 777 start-prompto.sh
     docker-compose up --no-start
