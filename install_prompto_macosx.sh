@@ -1,7 +1,7 @@
 #!/bin/bash
 
-# check docker-compose install
-docker-compose version &>/dev/null
+# check docker compose install
+docker compose version &>/dev/null
 version=$?
 if [ $version -eq 0 ]
 then
@@ -63,12 +63,12 @@ then
     echo DEVELOPER_PORT=${DEVELOPER_PORT} >> .env
     echo FACTORY_IMAGE=prompto/factory:${FACTORY_VERSION} >> .env
     rm -f start-prompto.sh
-    echo docker-compose up --detach >> start-prompto.sh
-    echo sleeping 10s while prompto is starting
+    echo docker compose up --detach >> start-prompto.sh
+    echo echo sleeping 10s while prompto is starting >> start-prompto.sh
     echo sleep 10 >> start-prompto.sh
     echo open http://localhost:${FACTORY_PORT} >> start-prompto.sh
     chmod 777 start-prompto.sh
-    docker-compose up --no-start
+    docker compose up --no-start
   popd || exit
 
   echo prompto for docker installed at ${PROMPTO_DATA}
@@ -77,7 +77,7 @@ then
   echo   ./start-prompto.sh
   echo to stop prompto, open terminal and type:
   echo   cd ${PROMPTO_DATA}
-  echo   docker-compose stop
+  echo   docker compose stop
 
   echo starting prompto...
   pushd ${PROMPTO_DATA} || exit
@@ -86,7 +86,7 @@ then
 
 else
   # shellcheck disable=SC1010
-  echo it seems you do not have docker-compose installed, please install docker-compose and retry
+  echo it seems you do not have latest docker installed, please install latest docker and retry
 fi
 
 
