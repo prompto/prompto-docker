@@ -1,4 +1,4 @@
-FROM prompto/maven:1.0.1
+FROM prompto/jdk11:1.0.0
 USER prompto
 WORKDIR /home/prompto
 ADD ./get-platform-version.py get-platform-version.py

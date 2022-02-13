@@ -1,4 +1,4 @@
-FROM prompto/jdk11:1.0.0
+FROM prompto/centos:1.0.0
 USER prompto
 WORKDIR /home/prompto
 RUN mkdir /home/prompto/.m2
