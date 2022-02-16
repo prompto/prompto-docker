@@ -1,4 +1,4 @@
-FROM prompto/jdk17:1.0.0
+FROM prompto/jdk17:1.0.1
 USER prompto
 WORKDIR /home/prompto
 ADD ./get-platform-version.py get-platform-version.py
