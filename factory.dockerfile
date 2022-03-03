@@ -7,7 +7,7 @@ USER prompto
 WORKDIR /home/prompto
 ADD ./get-factory-version.py get-factory-version.py
 RUN python get-factory-version.py >> factory-version.txt
-RUN mvn dependency:get -transitive=false -Dpackaging=pom -Dartifact=org.prompto:CodeFactory:$(cat factory-version.txt)
+RUN mvn dependency:get -Dartifact=org.prompto:CodeFactory:$(cat factory-version.txt)
 USER root
 RUN mkdir /v$(cat factory-version.txt) && chown prompto:prompto /v$(cat factory-version.txt)
 USER prompto
